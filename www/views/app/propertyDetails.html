@@ -1,0 +1,188 @@
+<ion-view title="FIX ME">
+  <ion-content lazy-scroll has-header="true"> 
+	
+	<ion-spinner icon="bubbles" ng-if='isPropertyDetailsLoading' class="spinner"></ion-spinner>
+	
+	<div ng-if="!isPropertyDetailsLoading">
+		<div>
+			<ion-slide-box ng-if="allImages">
+		   	<ion-slide ng-repeat="propertyImg in allImages" >
+			    <div class="animated fadeInLeft propertyImg" 
+			    ng-style="{'background-image':'url(http://ec2-52-32-92-71.us-west-2.compute.amazonaws.com/S_uploads/{{ propertyImg.FileName }})'}">		    
+			    </div>
+			  </ion-slide>	   	
+		   	</ion-slide-box>
+		</div>
+		
+		<div class="propertyName">{{allImages[0].PropertyName}}</div>
+	</div>	
+		
+	<div ng-if="!isPropertyDetailsLoading">	
+		
+		<hr class="propertyDetails">	
+	
+		<!-- START Rent -->
+		<div class="section" ng-click="click(1)">
+	 		<h3 class="sectionTitle" ng-class="showRent == 1 ? 'lightBlue' : ''">Rent</h3>
+			<i class="icon pointer arrow" 
+			ng-class="showRent == 1 ? 'animated fadeIn ion-chevron-up' : 'animated fadeIn ion-chevron-down'"></i>  
+	
+			<div ng-if="showRent == 1" ng-class="showRent == 1 ? 'animated fadeIn' : 'animated fadeOutUp'">
+				<ul class="propertyDetails">
+					<li>
+						<span>Monthly Rent</span>
+						<span>${{rent['MonthlyRent']}}</span>
+					</li>
+					<li>
+						<span>Payment Made</span>
+						<span>${{rent['PaymentMadeSum']}}</span>
+					</li>
+					<li>
+						<span>Out Standing Balance</span>
+						<span>${{rent['OutstandingBalance']}}</span>
+					</li>
+					<li>
+						<span>Payment Plan</span>
+						<span>{{rent['PaymentPlan'] == 1 ? "Yes" : "No"}}</span>
+					</li>
+					<li ng-if="rent.PaymentPlan == 1">
+						<span>Payment Plan Schedule</span>
+						<div ng-if="rent.PaymentSum1 != 0">
+							<div class="dinline bold calign width_30pe">Date</div>
+							<div class="dinline bold calign width_30pe">Sum</div>
+							<div class="dinline bold calign width_30pe">Paid</div>
+						</div>
+						<div ng-if="rent.PaymentSum1 != 0">
+							<div class="dinline calign width_30pe">{{rent['PaymentDate1']}}</div>
+							<div class="dinline calign width_30pe">${{rent['PaymentSum1']}}</div>
+							<div class="dinline calign width_30pe">{{rent['IsPaid1'] == 1 ? "Yes" : "No"}}</div>
+						</div>
+						<div ng-if="rent.PaymentSum2 != 0">
+							<div class="dinline calign width_30pe">{{rent['PaymentDate2']}}</div>
+							<div class="dinline calign width_30pe">${{rent['PaymentSum2']}}</div>
+							<div class="dinline calign width_30pe">{{rent['IsPaid2'] == 1 ? "Yes" : "No"}}</div>
+						</div>
+						<div ng-if="rent.PaymentSum3 != 0">
+							<div class="dinline calign width_30pe">{{rent['PaymentDate3']}}</div>
+							<div class="dinline calign width_30pe">${{rent['PaymentSum3']}}</div>
+							<div class="dinline calign width_30pe">{{rent['IsPaid3'] == 1 ? "Yes" : "No"}}</div>
+						</div>
+						<div ng-if="rent.PaymentSum4 != 0">
+							<div class="dinline calign width_30pe">{{rent['PaymentDate4']}}</div>
+							<div class="dinline calign width_30pe">${{rent['PaymentSum4']}}</div>
+							<div class="dinline calign width_30pe">{{rent['IsPaid4'] == 1 ? "Yes" : "No"}}</div>
+						</div>
+						<div ng-if="rent.PaymentSum5 != 0">
+							<div class="dinline calign width_30pe">{{rent['PaymentDate5']}}</div>
+							<div class="dinline calign width_30pe">${{rent['PaymentSum5']}}</div>
+							<div class="dinline calign width_30pe">{{rent['IsPaid5'] == 1 ? "Yes" : "No"}}</div>
+						</div>
+					</li>
+					<li>
+						<span>Note</span>
+						<span>{{rent['Note']}}</span>
+					</li>
+				</ul>			
+			</div>  
+	 	</div> 
+	 	<!-- END Rent --> 
+		
+		<hr class="propertyDetails">
+		
+	 	<!-- START Lease --> 
+	 	<div class="section" ng-click="click(2)"> 
+	 		<h3 class="sectionTitle" ng-class="showLease == 1 ? 'lightBlue' : ''">Lease</h3>
+			<i class="icon pointer arrow" 
+			ng-class="showLease == 1 ? 'animated fadeIn ion-chevron-up' : 'animated fadeIn ion-chevron-down'"></i>  
+			<div ng-if="showLease == 1" ng-class="showLease == 1 ? 'animated fadeIn' : 'animated fadeOutUp'">
+				<ul class="propertyDetails">
+					<li>
+						<span>Lease Start Date</span>
+						<span>{{lease['LeaseStartDate']}}</span>
+					</li>
+					<li>
+						<span>Lease End Date</span>
+						<span>{{lease['LeaseEndDate']}}</span>
+					</li>
+				</ul>			
+			</div>
+	 	</div> 
+	 	<!-- END Lease --> 
+		
+		<hr class="propertyDetails">
+		
+	 	<!-- START Eviction --> 
+	 	<div class="section" ng-click="click(3)"> 
+	 		<h3 class="sectionTitle" ng-class="showEviction == 1 ? 'lightBlue' : ''">Eviction</h3>
+			<i class="icon pointer arrow" 
+			ng-class="showEviction == 1 ? 'animated fadeIn ion-chevron-up' : 'animated fadeIn ion-chevron-down'"></i>   
+			<div ng-if="showEviction == 1" ng-class="showEviction == 1 ? 'animated fadeIn' : 'animated fadeOutUp'">
+				<ul class="propertyDetails">
+					<li>
+						<span>Out Standing Balance</span>
+						<span>${{eviction['OutStandingBalance']}}</span>
+					</li>
+					<li ng-show="isEvictionField">
+						<span>Eviction Field Date</span>
+						<span>{{eviction['EvictionField']}}</span>
+					</li>
+					<li ng-show="isCourtDate">
+						<span>Court Date</span>
+						<span>{{eviction['CourtDate']}}</span>
+					</li>
+					<li ng-show="isLockOut">
+						<span>Lock Out Date</span>
+						<span>{{eviction['LockOut']}}</span>
+					</li>
+					<li>
+						<span>Note</span>
+						<span>{{eviction['Notes']}}</span>
+					</li>					
+				</ul>			
+			</div>      
+	 	</div> 
+		<!-- END Eviction -->
+	
+		<div id="requestInfo"
+			ng-show="requestPopup == 1" 
+			ng-class="requestPopup == 1 ? 'requestPopup animated fadeIn' : 'requestPopup'">
+			<div>
+				<h3 class="calign">REQUEST INFO</h3>
+				<i class="ralign icon ion-android-cancel" ng-click="closePopup()"></i>
+			</div>
+			<ul class="propertyDetails">
+				<li>
+					<span>Rent</span>	
+					<span class="checkboxFive">
+						<input type="checkbox" id="checkboxFiveInput" ng-model="Info.S_Rent"/>
+						<label for="checkboxFiveInput"></label>
+					</span>
+				</li>
+				<li>
+					<span>Lease</span>
+					<span class="checkboxFive">
+						<input type="checkbox" id="checkboxFiveInput1" ng-model="Info.S_Lease">
+						<label for="checkboxFiveInput1"></label>
+					</span>
+				</li>
+				<li>
+					<span>Eviction</span>
+					<span class="checkboxFive">
+						<input type="checkbox" id="checkboxFiveInput2" ng-model="Info.S_Eviction">
+						<label for="checkboxFiveInput2"></label>
+					</span>
+				</li>
+				<li>
+					<div class="calign">
+						<button class="seeAll" ng-click="sendRequestInfo()">save</button>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+		<button class="infoBtn" ng-click="requestInfo()">REQUEST INFO</button>
+	
+	</div>
+  </ion-content>
+</ion-view>
+

@@ -1,0 +1,280 @@
+<ion-view title="RENT ME">
+  <ion-content> 
+  	
+  	<ion-spinner icon="bubbles" ng-if='isMarketingDetailsLoading' class="spinner"></ion-spinner>
+  
+	<div ng-if="!isMarketingDetailsLoading">
+		<div>
+			<ion-slide-box ng-if="marketingPropertyImages">
+		   	<ion-slide ng-repeat="propertyImg in marketingPropertyImages">
+			    <div class="animated fadeInLeft propertyImg" 
+			    ng-style="{'background-image':'url(http://ec2-52-32-92-71.us-west-2.compute.amazonaws.com/S_uploads/{{ propertyImg.FileName }})'}">		    
+			    </div>
+			  </ion-slide>	   	
+		   	</ion-slide-box>
+		</div>	
+	
+		<h4 class="bold calign top-15">{{marketingData.PropertyName}}</h4>
+		<h5 class="calign">{{marketingData.Address}}, {{marketingData.CityAndState}}, {{marketingData.Neighborhood}}</h5>
+		<div class="left-30 status">{{marketingData.Status}}</div>
+		<div class="propertyPrice lightBlue bold">$ {{marketingData.Rent}}</div>
+		<div class="left-30">Available: As of {{marketingData.AvailableDate}}</div>
+		<div class="left-30 bottom-26">Open Showing: {{marketingData.OpenShowingDate}}</div>
+		
+		<hr class="propertyDetails">
+		
+		<!-- START Summary -->
+		<div class="section"> 
+	 		<h3 class="sectionTitle lightBlue bold">Summary</h3>
+			<p>{{marketingData.Summary}}</p>		     
+	 	</div> 
+	 	<!-- END Summary -->
+	 	
+	 	<hr class="propertyDetails">
+	</div>	
+	
+	<div ng-show="!isMarketingDetailsLoading"> 	
+	 	
+	 	<!-- START Fundrise Rating -->
+		<div class="section"> 
+	 		<h3 class="sectionTitle lightBlue bold">ME Rating</h3>
+			<div>
+				<div class="ratingImg"></div> 
+				<div>{{marketingData.RatingSummary}}</div>			
+			</div>     
+	 	</div> 
+ 	 	<!-- END Fundrise Rating-->
+	 	
+ 	 	<hr class="propertyDetails"> 
+	 	
+	 	<!-- START Property Location -->
+		<div class="section"> 
+	 		<h3 class="sectionTitle lightBlue bold bottom-0">Location</h3>
+	 		<h4 class="">{{marketingData.Address}}</h4>
+	 		<h4 class="">{{marketingData.CityAndState}}</h4>
+	 		<div id="map" data-tap-disabled="true"></div>
+	 	</div> 
+	 	<!-- END Property Location -->
+	 	
+	 	<hr class="propertyDetails">
+	 	
+	 	<!-- START Property Details -->
+		<div class="section"> 
+	 		<h3 class="sectionTitle lightBlue bold">Property Details</h3>	 		
+	 		<ul class="marketingDetails">
+				<li>
+					<span>Sqf</span>	
+					<span class="right brown">{{marketingData.Sqf}} sqf</span>
+				</li>
+				<li>
+					<span>Bedrooms</span>	
+					<span class="right brown">{{marketingData.Bedrooms}}</span>
+				</li>
+				<li>
+					<span>Bathrooms</span>	
+					<span class="right brown">{{marketingData.Bathrooms}}</span>
+				</li>					
+	 		</ul>	
+	 	</div> 
+	 	<!-- END Property Details -->
+	 	
+	 	<hr class="propertyDetails">
+	 	
+	 	<!-- START Amenities -->
+		<div class="section"> 
+	 		<h3 class="sectionTitle lightBlue bold">Amenities</h3>
+			<div ng-if="marketingData.AmenityExist1 == 1">				
+				<ul class="marketingDetails">
+					<li>
+						<span>{{marketingData.AmenityType1}}</span>	
+						<div class="v width_11pe right"></div>		
+					</li>
+				</ul>					
+			</div>
+			<div ng-if="marketingData.AmenityExist2 == 1">
+				<ul class="marketingDetails">
+					<li>
+						<span>{{marketingData.AmenityType2}}</span>	
+						<div class="v width_11pe right"></div>		
+					</li>
+				</ul>
+			</div>
+			<div ng-if="marketingData.AmenityExist3 == 1">
+				<ul class="marketingDetails">
+					<li>
+						<span>{{marketingData.AmenityType3}}</span>	
+						<div class="v width_11pe right"></div>		
+					</li>
+				</ul>
+			</div>
+			<div ng-if="marketingData.AmenityExist4 == 1">
+				<ul class="marketingDetails">
+					<li>
+						<span>{{marketingData.AmenityType4}}</span>	
+						<div class="v width_11pe right"></div>		
+					</li>
+				</ul>
+			</div>
+			<div ng-if="marketingData.AmenityExist5 == 1">
+				<ul class="marketingDetails">
+					<li>
+						<span>{{marketingData.AmenityType5}}</span>	
+						<div class="v width_11pe right"></div>		
+					</li>
+				</ul>
+			</div>			
+			<div ng-if="marketingData.AmenityExist6 == 1">
+				<ul class="marketingDetails">
+					<li>
+						<span>{{marketingData.AmenityType6}}</span>	
+						<div class="v width_11pe right"></div>		
+					</li>
+				</ul>
+			</div>			
+			<div ng-if="marketingData.AmenityExist7 == 1">
+				<ul class="marketingDetails">
+					<li>
+						<span>{{marketingData.AmenityType7}}</span>	
+						<div class="v width_11pe right"></div>		
+					</li>
+				</ul>
+			</div>			
+			<div ng-if="marketingData.AmenityExist8 == 1">
+				<ul class="marketingDetails">
+					<li>
+						<span>{{marketingData.AmenityType8}}</span>	
+						<div class="v width_11pe right"></div>		
+					</li>
+				</ul>
+			</div>			
+			<div ng-if="marketingData.AmenityExist9 == 1">
+				<ul class="marketingDetails">
+					<li>
+						<span>{{marketingData.AmenityType9}}</span>	
+						<div class="v width_11pe right"></div>		
+					</li>
+				</ul>
+			</div>			
+			<div ng-if="marketingData.AmenityExist10 == 1">
+				<ul class="marketingDetails">
+					<li>
+						<span>{{marketingData.AmenityType10}}</span>	
+						<div class="v width_11pe right"></div>		
+					</li>
+				</ul>
+			</div>
+	 	</div> 
+	 	<!-- END Amenities -->
+	 	
+	 	<div id="mailPopup" ng-show="sendMail == 1" class="sendMailPopup offer">
+			<div>
+				<h3 class="calign">Send Mail</h3>
+				<i class="ralign icon ion-android-cancel" ng-click="closeMailPopup()"></i>
+			</div>
+			<div class="list">	
+				<ul class="propertyDetails">			
+					<li>
+						<span>Name </span>
+						<label class="item item-input">	
+							<input class="" type="text" placeholder="Your Name" ng-model="MailObj.name">	
+						</label>
+					</li>
+					
+					<li>
+						<span>Mail </span>
+						<label class="item item-input">	
+							<input class="" type="text" placeholder="Your Email" ng-model="MailObj.mail">	
+						</label>
+					</li>
+					<li>
+						<span>Phone </span>
+						<label class="item item-input">
+						    <input type="text" placeholder="Your Phone" ng-model="MailObj.phone"/>
+						</label>	
+						
+					</li>
+					<li>
+						<span>Address </span>
+						<label class="item item-input">
+							<input class="" type="text" placeholder="Your Address" ng-model="MailObj.address"/>
+						</label>
+					</li>
+					<li>
+						<span>Bid </span>
+						<label class="item item-input">
+							$<input class="" type="text" placeholder=" Your Bid" ng-model="MailObj.bid"/>  
+						</label>
+					</li>
+					<li>
+						<span>Code Coupon</span>
+						<label class="item item-input">
+							<input class="" type="text" placeholder="Your Coupon code" ng-model="MailObj.codeCoupon"/>
+						</label>
+					</li>
+					<li>
+						<div class="calign top-20">
+							<button class="seeAll" ng-click="send()">Send</button>
+						</div>
+					</li>
+				</ul>
+			</div>	
+		</div>
+	 	
+	 	<div id="mailPopup" ng-show="meet == 1" class="sendMailPopup">		
+			<div>
+				<h3 class="calign">Send Mail</h3>
+				<i class="ralign icon ion-android-cancel" ng-click="closeMeetingPopup()"></i>
+			</div>
+			<div class="list">	
+				<ul class="propertyDetails">			
+					<li>
+						<span>Name </span>
+						<label class="item item-input">	
+							<input class="" type="text" placeholder="Your Name" ng-model="MailObj.name">	
+						</label>
+					</li>
+					
+					<li>
+						<span>Mail </span>
+						<label class="item item-input">	
+							<input class="" type="text" placeholder="Your Email" ng-model="MailObj.mail">	
+						</label>
+					</li>
+					<li>
+						<span>Phone </span>
+						<label class="item item-input">
+						    <input type="text" placeholder="Your Phone" ng-model="MailObj.phone"/>
+						</label>	
+						
+					</li>				
+					<li>
+						<span>Meeting schedule </span>
+						<label class="item item-input">
+							<input class="" type="text" placeholder="yyyy-mm-dd" ng-model="MailObj.schedule"/>
+						</label>
+					</li>
+					<li>
+						<span>Code Coupon</span>
+						<label class="item item-input">
+							<input class="" type="text" placeholder="Your Coupon code" ng-model="MailObj.codeCoupon"/>
+						</label>
+					</li>
+					<li>
+						<div class="calign top-20">
+							<button class="seeAll" ng-click="setMeeting()">Send</button>
+						</div>
+					</li>
+				</ul>
+			</div>	
+		</div>
+		
+	 	<div class="btnDiv">	 		
+	 		<button class="btn" ng-click="share()">SHARE</button>
+	 		<button class="btn" ng-click="meeting()">MEETING</button>
+	 	</div>
+	 	<div class="btnDiv">
+	 		<button class="btn offer" ng-click="rent()">RENT</button>
+	 	</div>
+ 	</div>
+  </ion-content>
+</ion-view>
